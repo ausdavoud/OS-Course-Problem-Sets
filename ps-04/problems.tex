@@ -1,0 +1,283 @@
+\documentclass[12pt, answers]{exam}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabularray}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{listings} 
+\usepackage{xepersian}
+\settextfont[Path = ../fonts/ ,Scale = 1.0 ,
+BoldFont = *Bd ,
+ItalicFont = *It ,
+BoldItalicFont = *BdIt ,
+Extension = .ttf
+]{XB Yas}
+
+
+\newtcblisting{codebox}[1]{
+    enhanced,
+    listing only,
+    listing options={
+        language=C,
+        basicstyle=\ttfamily\small\latin,
+        keywordstyle=\color{blue}\bfseries,
+        commentstyle=\color{green!50!black},
+        breaklines=true,
+        numbers=left,
+        numberstyle=\tiny\color{gray},
+        tabsize=2
+    },
+    colback=white!95!gray,
+    colframe=black!70,
+    boxrule=0.5mm,
+    arc=2mm,
+    attach boxed title to bottom center={yshift=3mm}, 
+    boxed title style={
+        colback=black!10,
+        colframe=black!70,
+        boxrule=0.5mm,
+        arc=1mm
+    },
+    title={\textbf{#1}},
+    coltitle=black
+}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{پاسخ:}\par}
+\newcommand{\class}{اصول سیستم‌های عامل}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده ریاضی و آمار}
+\newcommand{\prof}{استاد: دکتر رفیعی}
+\newcommand{\group}{\textcolor{red}{نام دانشجو - شماره دانشجویی}}
+
+
+\begin{document}
+\pointpoints{نمره}{نمره}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+    \multicolumn{2}{c}{\textbf{به نام خدا}}                                            \\
+                    & \multirow{2}{*}{\includegraphics[scale=0.2]{../UILOGO.png}} \\
+    \textbf{\class} &                                                                  \\
+    \textbf{\term}  &                                                                  \\
+    \textbf{\prof}  &                                                                  \\
+    \textbf{\group} &                                                                  \\
+                    & \textbf{\college}                                                \\
+    % & \textbf{\todaydate} \\
+    % & \textbf{\deadline} \\ \\
+\end{tabular}\\
+\rule[1ex]{\textwidth}{.1pt}
+
+\begin{center}
+    \textbf{تمرین سری چهارم}
+\end{center}
+
+
+\begin{questions}
+    \question
+    \begin{parts}
+        \part[3] توزیع‌کننده یکی از مولفه‌های \dots \
+        است. این مولفه در واقع یک \dots \
+        است که کنترل \dots \ را در اختیار فرآیند انتخاب شده توسط زمان‌بند CPU
+        قرار می‌دهد.
+
+        \part[2] دو مورد از وظایف عملکردی توزیع‌کننده را نام ببرید.
+
+        \part[3] آیا سرعت این مولفه بر روی عملکرد کلی سیستم‌عامل تاثیر می‌گذارد؟ چرا؟
+    \end{parts}
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part[1] چرا مدت زمان انفجارهای \lr{CPU} در سیستم اندازه‌گیری می‌شود؟
+        \part[1] آیا صف فرآیندهای آماده (\lr{Ready Queue}) لزوماً باید به صورت \lr{FIFO} پیاده‌سازی شود؟
+        \part[2] دو مورد از ساختارهای داده‌ای که می‌توان برای پیاده‌سازی صف آماده استفاده کرد را نام ببرید.
+
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part[1] اگر زمان‌بندی فقط در شرایط «تغییر از اجرا به انتظار» و «خاتمه فرآیند» صورت گیرد، به آن طرح زمان‌بندی \dots \ می‌گوییم.
+        \part[1] اکثر سیستم‌عامل‌های مدرن از چه مکانیزمی برای زمان‌بندی فرآیندهای کرنل استفاده می‌کنند؟
+        \part[1] در اسلایدها خواندیم که بخش‌هایی از کد وجود دارند که
+        نمی‌توانند توسط چند فرآیند به صورت همروند استفاده شوند. از این رو
+        \dots \ ها هنگام ورود به این بخش غیرفعال و به هنگام خروج فعال می‌شوند.
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+
+    \pagebreak
+    \question در این سوال قصد داریم تا دو مشکل مربوط به
+    \textbf{اجرای قبضه‌ای}
+    فرآیندها را مورد بررسی قرار دهیم (به صفحه ۱۷ اسلاید ۱۳ مراجعه شود).
+    \begin{parts}
+        \part[10] (\textbf{مشکل ۱: از دست رفتن ورودی}) فرض کنید که دو فرایند داریم. فرایند ۱ دائم اطلاعات مربوط به \lr{I/O} را از یک دستگاه دریافت می‌کند و آن را در یک بافر مشترک قرار می‌دهد. فرایند ۲ نیز دائم داده‌ها را از این بافر می‌خواند و پردازش می‌کند.
+        در صورت اجرای قبضه‌ای این دو فرایند، چه مشکلی ممکن است رخ دهد؟
+        لطفاً با استفاده از کد زیر که نمایانگر هر یک از این دو فرایند است، مشکل را توضیح دهید.
+
+        دقت داشته باشید که متغیر
+        \lr{buffer} بین هر دو فرآیند مشترک است.
+
+        متغیر \lr{new\_data} نیز داده جدیدی است که از دستگاه \lr{I/O} دریافت شده است.
+        \begin{tcbraster}[raster columns=2, raster column skip=0.5cm, raster equal height]
+
+            \begin{codebox}{فرآیند ۱}
+while (1) {
+    // Producer
+    buffer = new_data;
+}
+            \end{codebox}
+
+            \begin{codebox}{فرآیند ۲}
+void kernel_process() {
+    // Consumer
+    int data = buffer;
+    process(data);
+}
+            \end{codebox}
+
+        \end{tcbraster}
+
+        \vspace{1cm}
+        \begin{solution}
+            \textcolor{red}{جواب خود را اینجا بنویسید.}
+        \end{solution}
+
+
+        \pagebreak
+        \part[10] (\textbf{مشکل ۲: بازنویسی خروجی}) فرض کنید که یک تابع به نام \lr{increment} داریم که یک شمارنده مشترک
+        (counter)
+        را افزایش می‌دهد. پیاده‌سازی این تابع را در زیر می‌بینید.
+        این پیاده‌سازی تقریبا معادل به اتفاقاتی است که هنگام اجرای
+        \lr{counter++}
+        در زبان \lr{C} رخ می‌دهد.
+        حالا فرض کنید این تابع دوبار توسط تابع
+        main
+        صدا زده شود. چه مشکلی ممکن است رخ دهد؟ توضیح دهید.
+        \begin{tcbraster}[raster columns=2, raster column skip=0.5cm, raster equal height]
+
+            \begin{codebox}{تابع افزایش مقدار شمارنده}
+void increment() {
+    int temp;
+    temp = counter;
+    temp = temp + 1;
+    counter = temp;
+}
+            \end{codebox}
+
+            \begin{codebox}{تابع main}
+int main() {
+    // Shared counter = 5
+    increment();
+    increment();
+}
+            \end{codebox}
+
+
+
+        \end{tcbraster}
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+
+
+    \pagebreak
+    \question[20]
+    سه فرآیند
+    \lr{P3, P2, P1}
+    با زمان اجرا و زمان ورود زیر را در نظر بگیرید و به موارد خواسته شده پاسخ دهید.
+    (\lr{quantum = 2})
+
+    \vspace{0.2cm}
+    \begin{minipage}[c]{0.3\textwidth}
+        \begin{enumerate}
+            \item ﺑﻬﺮﻩ ﻭﺭﯼ CPU
+            \item ﻣﯿﺎﻧﮕﯿﻦ ﺯﻣﺎﻥ ﺑﺮﮔﺸﺖ
+            \item ﻣﯿﺎﻧﮕﯿﻦ ﺯﻣﺎﻥ ﺍﻧﺘﻈﺎﺭ
+            \item ﻣﯿﺎﻧﮕﯿﻦ ﺯﻣﺎﻥ ﭘﺎﺳﺦ
+        \end{enumerate}
+    \end{minipage}
+    \begin{minipage}[c]{0.7\textwidth}
+        \centering
+        \begin{tblr}{|c|c|c|}
+            \hline
+            زمان اجرا & زمان ورود & فرآیند \\ \hline
+            $6$       & $0$       & $P1$   \\ \hline
+            $3$       & $1$       & $P2$   \\ \hline
+            $4$       & $6$       & $P3$   \\ \hline
+            $2$       & $6$       & $P4$   \\
+            \hline
+        \end{tblr}
+    \end{minipage}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part[5] تفاوت دیدگاه کاربر و دیدگاه سیستم در ارزیابی الگوریتم‌های زمان‌بندی چیست؟
+        \part[5] منظور از زمان بازگشت \lr{(Turnaround Time)} چیست و چگونه محاسبه می‌شود؟
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part[5] اگر در الگوریتم زمان‌بندی نوبتی-گردشی (RR)، \textbf{کوانتوم زمانی} بزرگ‌تر از زمان اجرای طولانی‌ترین فرآیند موجود در سیستم باشد، این الگوریتم به چه سیاستی تبدیل می‌شود؟
+
+
+        \part[5] برای جلوگیری از پدیده \textbf{گرسنگی} در زمان‌بندی اولویت‌دار، از چه مکانیزمی استفاده می‌شود؟
+
+
+        \part[5] چرا الگوریتم \textbf{SJF} از نظر تئوری یک الگوریتم \textbf{بهینه} محسوب می‌شود؟
+
+
+        \part[5] کوچک انتخاب کردن بیش از حد \textbf{کوانتوم زمانی} در الگوریتم RR چه پیامدی برای سیستم دارد؟
+
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part[10] با فرض استفاده از فرمول $S_n = \alpha T_{n-1} + (1-\alpha) S_{n-1}$ برای پیش‌بینی انفجار بعدی در SJF، اگر $\alpha = 0\.1$ تنظیم شود و یک فرآیند پس از مدت‌ها اجرای کوتاه، ناگهان یک انفجار بسیار طولانی داشته باشد، واکنش سیستم را تحلیل کنید.
+
+
+        \part[10] تحلیل کنید که چرا در الگوریتم \textbf{MLFQ}، فرآیندهای I/O Bound در صفوف بالا باقی می‌مانند اما فرآیندهای CPU Bound به صفوف پایین رانده می‌شوند؟
+
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+\end{questions}
+
+\end{document}

@@ -1,0 +1,104 @@
+\documentclass[12pt, answers]{exam}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{subfiles}
+\usepackage{xepersian}
+
+\settextfont[
+    Path = ../fonts/,
+    Scale = 1.0,
+    BoldFont = *Bd,
+    ItalicFont = *It,
+    BoldItalicFont = *BdIt,
+    Extension = .ttf
+]{XB Yas}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\color{blue}پاسخ:}\par}
+\newcommand{\class}{اصول سیستم‌های عامل}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده ریاضی و آمار}
+\newcommand{\prof}{استاد: دکتر رفیعی}
+\newcommand{\group}{نام دانشجو}
+
+\begin{document}
+%%%%%%%%%%%%%% HDR START 
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+    \multicolumn{2}{c}{\textbf{به نام خدا}}                                            \\
+                    & \multirow{2}{*}{\includegraphics[scale=0.2]{../UILOGO.png}} \\
+    \textbf{\class} &                                                                  \\
+    \textbf{\term}  &                                                                  \\
+    \textbf{\prof}  &                                                                  \\
+    \textbf{\group} &                                                                  \\
+                    & \textbf{\college}                                                \\
+    % & \textbf{\todaydate} \\
+    % & \textbf{\deadline} \\ \\
+\end{tabular}\\
+\rule[1ex]{\textwidth}{.1pt}
+
+\begin{center}
+    \textbf{\lr{Problem Set 1}}
+\end{center}
+%%%%%%%%%%%%%% HDR END 
+
+
+\begin{questions}
+    \pointpoints{نمره}{نمره}
+
+    %%%%%%%%%%%%%% 1 START 
+    \input{src/1_0.tex}
+
+    \begin{solution}
+        جواب خود را اینجا بنویسید.
+    \end{solution}
+    %%%%%%%%%%%%%% 1 END 
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 2 START
+    \input{src/2_0.tex}
+
+    \begin{solution}
+        جواب خود را اینجا بنویسید.
+    \end{solution}
+    %%%%%%%%%%%%%% 2 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 3 START
+    \input{src/3_0.tex}
+
+    \begin{solution}
+        جواب خود را اینجا بنویسید.
+    \end{solution}
+    %%%%%%%%%%%%%% 3 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%%% 4 START
+    \input{src/4_0.tex}
+
+    \begin{solution}
+        جواب خود را اینجا بنویسید.
+    \end{solution}
+    %%%%%%%%%%%%%%% 4 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%%% 5 START
+    \input{src/5_0.tex}
+
+    \begin{solution}
+        جواب خود را اینجا بنویسید.
+    \end{solution}
+    %%%%%%%%%%%%%%% 5 END
+\end{questions}
+\end{document}

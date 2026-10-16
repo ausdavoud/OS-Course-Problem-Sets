@@ -1,0 +1,341 @@
+\documentclass[12pt, answers]{exam}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabularray}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{listings} 
+\usepackage{xepersian}
+\settextfont[Path = ../fonts/ ,Scale = 1.0 ,
+BoldFont = *Bd ,
+ItalicFont = *It ,
+BoldItalicFont = *BdIt ,
+Extension = .ttf
+]{XB Yas}
+
+
+\newtcblisting{codebox}[1]{
+    enhanced,
+    listing only,
+    listing options={
+        language=C,
+        basicstyle=\ttfamily\small\latin,
+        keywordstyle=\color{blue}\bfseries,
+        commentstyle=\color{green!50!black},
+        breaklines=true,
+        numbers=left,
+        numberstyle=\tiny\color{gray},
+        tabsize=2
+    },
+    colback=white!95!gray,
+    colframe=black!70,
+    boxrule=0.5mm,
+    arc=2mm,
+    attach boxed title to bottom center={yshift=3mm}, 
+    boxed title style={
+        colback=black!10,
+        colframe=black!70,
+        boxrule=0.5mm,
+        arc=1mm
+    },
+    title={\textbf{#1}},
+    coltitle=black
+}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{پاسخ:}\par}
+\newcommand{\class}{اصول سیستم‌های عامل}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده ریاضی و آمار}
+\newcommand{\prof}{استاد: دکتر رفیعی}
+\newcommand{\group}{\textcolor{red}{نام دانشجو - شماره دانشجویی}}
+
+
+
+\begin{document}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+    \multicolumn{2}{c}{\textbf{به نام خدا}}                                            \\
+                    & \multirow{2}{*}{\includegraphics[scale=0.2]{../UILOGO.png}} \\
+    \textbf{\class} &                                                                  \\
+    \textbf{\term}  &                                                                  \\
+    \textbf{\prof}  &                                                                  \\
+    \textbf{\group} &                                                                  \\
+                    & \textbf{\college}                                                \\
+    % & \textbf{\todaydate} \\
+    % & \textbf{\deadline} \\ \\
+\end{tabular}\\
+\rule[1ex]{\textwidth}{.1pt}
+
+\begin{center}
+    \textbf{تمرین سری اول}
+\end{center}
+
+
+\begin{questions}
+    \question
+    \begin{parts}
+        \part توزیع‌کننده یکی از مولفه‌های \dots \
+        است. این مولفه در واقع یک \dots \
+        است که کنترل \dots \ را در اختیار فرآیند انتخاب شده توسط زمان‌بند CPU
+        قرار می‌دهد.
+
+        \part دو مورد از وظایف عملکردی توزیع‌کننده را نام ببرید.
+
+        \part آیا سرعت این مولفه بر روی عملکرد کلی سیستم‌عامل تاثیر می‌گذارد؟ چرا؟
+    \end{parts}
+    \begin{solution}
+        \begin{parts}
+            \part زمان‌بندی \lr{CPU}، ماژول، هسته‌ی پردازشی
+
+            \part دو مورد از سه مورد زیر به دلخواه:
+            \begin{enumerate}
+                \item تعویض محتوای یک فرآیند با یک فرآیند دیگر (\lr{Context Switching})
+                \item تعویض به مد کاربر
+                \item پرش به مکان مناسب از برنامه‌ی کاربر برای ادامه‌ی اجرای برنامه
+            \end{enumerate}
+
+            \part بله. چرا که در هر تعویض متن فراخوانی می‌شود.
+        \end{parts}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part چرا مدت زمان انفجارهای \lr{CPU} در سیستم اندازه‌گیری می‌شود؟
+        \part آیا صف فرآیندهای آماده (\lr{Ready Queue}) لزوماً باید به صورت \lr{FIFO} پیاده‌سازی شود؟
+        \part دو مورد از ساختارهای داده‌ای که می‌توان برای پیاده‌سازی صف آماده استفاده کرد را نام ببرید.
+
+    \end{parts}
+
+    \begin{solution}
+        \begin{parts}
+            \part جهت استفاده در پیاده‌سازی الگوریتم‌های زمان‌بندی \lr{CPU}.
+            \part خیر.
+            \part صف اولویت، درخت، لیست پیوندی نامرتب (دو مورد ذکر شود).
+        \end{parts}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part اگر زمان‌بندی فقط در شرایط «تغییر از اجرا به انتظار» و «خاتمه فرآیند» صورت گیرد، به آن طرح زمان‌بندی \dots \ می‌گوییم.
+        \part اکثر سیستم‌عامل‌های مدرن از چه مکانیزمی برای زمان‌بندی فرآیندهای کرنل استفاده می‌کنند؟
+        \part در اسلایدها خواندیم که بخش‌هایی از کد وجود دارند که
+        نمی‌توانند توسط چند فرآیند به صورت همروند استفاده شوند. از این رو
+        \dots \ ها هنگام ورود به این بخش غیرفعال و به هنگام خروج فعال می‌شوند.
+    \end{parts}
+
+    \begin{solution}
+        \begin{parts}
+            \part اگر زمان‌بندی فقط در شرایط «تغییر از اجرا به انتظار» و «خاتمه فرآیند» صورت گیرد، به آن طرح زمان‌بندی \dots \ می‌گوییم.
+            \part زمان‌بندی قبضه‌ای.
+            \part وقفه‌ها
+        \end{parts}
+    \end{solution}
+
+
+    \pagebreak
+    \question در این سوال قصد داریم تا دو مشکل مربوط به
+    \textbf{اجرای قبضه‌ای}
+    فرآیندها را مورد بررسی قرار دهیم (به صفحه ۱۷ اسلاید ۱۳ مراجعه شود).
+    \begin{parts}
+        \part (\textbf{مشکل ۱: از دست رفتن ورودی}) فرض کنید که دو فرایند داریم. فرایند ۱ دائم اطلاعات مربوط به \lr{I/O} را از یک دستگاه دریافت می‌کند و آن را در یک بافر مشترک قرار می‌دهد. فرایند ۲ نیز دائم داده‌ها را از این بافر می‌خواند و پردازش می‌کند.
+        در صورت اجرای قبضه‌ای این دو فرایند، چه مشکلی ممکن است رخ دهد؟
+        لطفاً با استفاده از کد زیر که نمایانگر هر یک از این دو فرایند است، مشکل را توضیح دهید.
+
+        دقت داشته باشید که متغیر
+        \lr{buffer} بین هر دو فرآیند مشترک است.
+
+        متغیر \lr{new\_data} نیز داده جدیدی است که از دستگاه \lr{I/O} دریافت شده است.
+        \begin{tcbraster}[raster columns=2, raster column skip=0.5cm, raster equal height]
+
+            \begin{codebox}{فرآیند ۱}
+while (1) {
+    // Producer (Interrupt)
+    buffer = new_data;
+}
+            \end{codebox}
+
+            \begin{codebox}{فرآیند ۲}
+void kernel_process() {
+    // Consumer
+    int data = buffer;
+    process(data);
+}
+            \end{codebox}
+
+        \end{tcbraster}
+
+        \vspace{1cm}
+
+        
+
+        \pagebreak
+        \part (\textbf{مشکل ۲: بازنویسی خروجی}) فرض کنید که یک تابع به نام \lr{increment} داریم که یک شمارنده مشترک
+        (counter)
+        را افزایش می‌دهد. پیاده‌سازی این تابع را در زیر می‌بینید.
+        این پیاده‌سازی تقریبا معادل به اتفاقاتی است که هنگام اجرای
+        \lr{counter++}
+        در زبان \lr{C} رخ می‌دهد.
+        حالا فرض کنید این تابع دوبار توسط تابع
+        main
+        صدا زده شود. چه مشکلی ممکن است رخ دهد؟ توضیح دهید.
+        \begin{tcbraster}[raster columns=2, raster column skip=0.5cm, raster equal height]
+
+            \begin{codebox}{تابع افزایش مقدار شمارنده}
+void increment() {
+    int temp;
+    temp = counter;
+    temp = temp + 1;
+    counter = temp;
+}
+            \end{codebox}
+
+            \begin{codebox}{تابع main}
+int main() {
+    // Shared counter = 5
+    increment();
+    increment();
+}
+            \end{codebox}
+
+            
+
+        \end{tcbraster}
+    \end{parts}
+
+
+    \begin{solution}
+            \begin{parts}
+                \part این توالی را در نظر بگیرید:
+                \begin{enumerate}
+                    \item فرآیند ۱ داده جدیدی را در بافر می‌نویسد.
+                    \item فرآیند ۱ توسط سیستم‌عامل متوقف می‌شود (قبضه‌ای).
+                    \item فرآیند ۱ دوباره اجرا می‌شود و داده جدید دیگری را در بافر می‌نویسد (بدون اینکه به فرآیند ۲ فرصت بدهد تا داده قبلی را بخواند).
+                    \item فرآیند ۲ اجرا می‌شود و داده‌ای را از بافر می‌خواند.
+                \end{enumerate}
+                در این سناریو، داده‌ای که فرآیند ۲ می‌خواند، داده‌ای است که توسط فرآیند
+                ۱ در مرحله ۳ نوشته شده است. بنابراین، داده‌ای که در مرحله ۱ نوشته شده بود،
+                از دست رفته است زیرا فرآیند ۲ هرگز فرصتی برای خواندن آن نداشت.
+                این مشکل به دلیل اجرای قبضه‌ای رخ می‌دهد که اجازه نمی‌دهد فرآیند ۲ قبل
+                از اینکه فرآیند ۱ دوباره بافر را بازنویسی کند، داده را بخواند.
+                    
+                \part این توالی را در نظر بگیرید:
+                    \begin{enumerate}
+                        \item تابع main اولین بار تابع increment را صدا می‌زند.
+                        \item درون increment، مقدار شمارنده مشترک (۵) در temp خوانده می‌شود.
+                        \item قبل از اینکه temp افزایش یابد و مقدار جدید در شمارنده نوشته شود،
+                        سیستم‌عامل اجرای تابع increment را متوقف می‌کند (قبضه‌ای).
+                        \item تابع main دومین بار تابع increment را صدا می‌زند.
+                        \item درون increment، مقدار شمارنده مشترک (۵) دوباره در temp خوانده می‌شود.
+                        \item temp افزایش می‌یابد و مقدار جدید (۶) در شمارنده نوشته می‌شود.
+                        \item سپس سیستم‌عامل اجرای اولین فراخوانی increment را از سر می‌گیرد.
+                        \item temp که هنوز مقدار ۵ را دارد، افزایش می‌یابد و مقدار جدید (۶) در شمارنده نوشته می‌شود.
+                    \end{enumerate}
+                    در این سناریو، انتظار داشتیم که پس از دو فراخوانی increment،
+                    مقدار شمارنده به ۷ افزایش یابد.
+                    اما به دلیل اجرای قبضه‌ای،
+                    هر دو فراخوانی مقدار اولیه ۵ را خواندند و در
+                    نهایت شمارنده فقط به ۶ افزایش یافت. این مشکل به دلیل عدم هماهنگی
+                    بین دو فراخوانی رخ داد که منجر به بازنویسی خروجی شد.
+                \end{parts}
+            \end{solution}
+
+
+
+
+    \pagebreak
+    \question
+    سه فرآیند
+    \lr{P3, P2, P1}
+    با زمان اجرا و زمان ورود زیر را در نظر بگیرید و به موارد خواسته شده پاسخ دهید.
+    (\lr{quantum = 2})
+
+    \vspace{0.2cm}
+    \begin{minipage}[c]{0.3\textwidth}
+        \begin{enumerate}
+            \item ﺑﻬﺮﻩ ﻭﺭﯼ CPU
+            \item ﻣﯿﺎﻧﮕﯿﻦ ﺯﻣﺎﻥ ﺑﺮﮔﺸﺖ
+            \item ﻣﯿﺎﻧﮕﯿﻦ ﺯﻣﺎﻥ ﺍﻧﺘﻈﺎﺭ
+            \item ﻣﯿﺎﻧﮕﯿﻦ ﺯﻣﺎﻥ ﭘﺎﺳﺦ
+        \end{enumerate}
+    \end{minipage}
+    \begin{minipage}[c]{0.7\textwidth}
+        \centering
+        \begin{tblr}{|c|c|c|}
+            \hline
+            زمان اجرا & زمان ورود & فرآیند \\ \hline
+            $6$       & $0$       & $P1$   \\ \hline
+            $3$       & $1$       & $P2$   \\ \hline
+            $4$       & $6$       & $P3$   \\ \hline
+            $2$       & $6$       & $P4$   \\
+            \hline
+        \end{tblr}
+    \end{minipage}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part تفاوت دیدگاه کاربر و دیدگاه سیستم در ارزیابی الگوریتم‌های زمان‌بندی چیست؟
+        \begin{solution}
+            از دیدگاه کاربر، هدف اصلی کاهش زمان پاسخ \lr{(Response Time)} است تا سیستم سریع‌تر واکنش نشان دهد. اما از دیدگاه سیستم،
+            هدف اصلی افزایش توان عملیاتی \lr{(Throughput)} و
+            به حداکثر رساندن بهره‌وری پردازنده \lr{(CPU Utilization)} است تا از منابع سخت‌افزاری به بهترین شکل استفاده شود.
+        \end{solution}
+        \part منظور از زمان بازگشت \lr{(Turnaround Time)} چیست و چگونه محاسبه می‌شود؟
+        \begin{solution}
+            زمان بازگشت بیانگر کل زمان سپری شده از لحظه ورود فرآیند به صف آماده تا لحظه تکمیل و خروج آن از سیستم است.
+            این زمان را می‌توان با فرمول «زمان خروج منهای زمان ورود» یا «مجموع زمان اجرا و زمان انتظار» محاسبه کرد.
+        \end{solution}
+    \end{parts}
+
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part اگر در الگوریتم زمان‌بندی نوبتی-گردشی (RR)، \textbf{کوانتوم زمانی} بزرگ‌تر از زمان اجرای طولانی‌ترین فرآیند موجود در سیستم باشد، این الگوریتم به چه سیاستی تبدیل می‌شود؟
+        \begin{solution}
+            در این شرایط، هر فرآیند پیش از اتمام کوانتوم زمانی، اجرای خود را کامل کرده و داوطلبانه پردازنده را رها می‌کند؛ بنابراین سیاست RR به الگوریتم \textbf{FCFS} (سرویس به ترتیب ورود) تنزل می‌یابد [۱۲].
+        \end{solution}
+
+        \part برای جلوگیری از پدیده \textbf{گرسنگی} در زمان‌بندی اولویت‌دار، از چه مکانیزمی استفاده می‌شود؟
+        \begin{solution}
+            از الگوریتم \textbf{سالمندی (Aging)} استفاده می‌شود. در این روش، اولویت فرآیندهایی که برای مدت طولانی در سیستم منتظر مانده‌اند، به طور تدریج افزایش می‌یابد (به عنوان مثال، با کاهش عدد اولویت در سیستم‌هایی که عدد کمتر نشان‌دهنده اولویت بالاتر است) تا در نهایت شانس اجرا پیدا کنند [۴۸، ۴۹].
+        \end{solution}
+
+        \part چرا الگوریتم \textbf{SJF} از نظر تئوری یک الگوریتم \textbf{بهینه} محسوب می‌شود؟
+        \begin{solution}
+            این الگوریتم بهینه است زیرا برای یک مجموعه مشخص از فرآیندها، \textbf{کمینه (حداقل) میانگین زمان انتظار} را فراهم می‌کند [۲۴]. با جابه‌جا کردن یک کار کوتاه به قبل از یک کار بلند، زمان انتظار فرآیند کوتاه بیشتر از زمان انتظار فرآیند بلند کاهش می‌یابد [۲۴، ۲۵].
+        \end{solution}
+
+        \part کوچک انتخاب کردن بیش از حد \textbf{کوانتوم زمانی} در الگوریتم RR چه پیامدی برای سیستم دارد؟
+        \begin{solution}
+            باعث افزایش تعداد دفعات \textbf{تعویض متن (Context Switch)} می‌شود. از آنجا که هر تعویض متن سربار زمانی به سیستم تحمیل می‌کند، کوچک بودن بیش از حد کوانتوم منجر به کاهش شدید \textbf{توان عملیاتی (Throughput)} سیستم می‌گردد [۱۳].
+        \end{solution}
+    \end{parts}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part با فرض استفاده از فرمول $S_n = \alpha T_{n-1} + (1-\alpha) S_{n-1}$ برای پیش‌بینی انفجار بعدی در SJF، اگر $\alpha = 0\.1$ تنظیم شود و یک فرآیند پس از مدت‌ها اجرای کوتاه، ناگهان یک انفجار بسیار طولانی داشته باشد، واکنش سیستم را تحلیل کنید.
+        \begin{solution}
+            از آنجا که مقدار $\alpha$ کوچک است (۰\.۱)، وزن داده شده به آخرین رخداد ($T_{n-1}$) بسیار ناچیز است و سیستم بیشتر بر اساس \textbf{تاریخچه پیشین} ($S_{n-1}$) تصمیم می‌گیرد [۳۱، ۳۲]. در نتیجه، سیستم به تغییر رفتار ناگهانی فرآیند با کندی واکنش نشان می‌دهد و همچنان آن را فرآیندی کوتاه در نظر می‌گیرد تا زمانی که چندین بار پیاپی انفجارهای طولانی تکرار شوند [۳۰، ۳۳].
+        \end{solution}
+
+        \part تحلیل کنید که چرا در الگوریتم \textbf{MLFQ}، فرآیندهای I/O Bound در صفوف بالا باقی می‌مانند اما فرآیندهای CPU Bound به صفوف پایین رانده می‌شوند؟
+        \begin{solution}
+            در MLFQ، اگر فرآیندی تمام کوانتوم زمانی خود را مصرف کند (ویژگی فرآیندهای CPU Bound)، سیستم اولویت آن را کاهش داده و به صف پایین‌تر منتقل می‌کند [۶۰، ۶۱]. اما فرآیندهای I/O Bound معمولاً پیش از اتمام کوانتوم، پردازنده را برای انجام عملیات ورودی/خروجی رها می‌کنند و به همین دلیل در صفوف با \textbf{اولویت بالاتر} باقی می‌مانند که این امر منجر به پاسخ‌دهی سریع‌تر به کارهای تعاملی می‌شود [۶۱].
+        \end{solution}
+    \end{parts}
+
+\end{questions}
+
+\end{document}

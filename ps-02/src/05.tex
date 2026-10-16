@@ -1,0 +1,22 @@
+\question[20] برنامه زیر را در نظر گرفته و با توجه به ویژگی‌های فراخوان سیستمی ،fork
+درخت فرآیند‌های آن را رسم کنید.
+\begin{latin}
+    \begin{lstlisting}[language=C]
+#include <unistd.h>
+
+int main() {
+    pid_t p = fork();
+    if (p == 0) {
+        fork();
+    } else {
+        pid_t p2 = fork();
+        if (p2 == 0) {
+            fork();
+        }
+        fork();
+    }
+    fork();
+    return 0;
+}
+\end{lstlisting}
+\end{latin}

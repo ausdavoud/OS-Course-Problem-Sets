@@ -1,0 +1,46 @@
+\question[20]
+برنامه زیر را در نظر بگیرید و به سوالات پاسخ دهید.
+
+\begin{latin}
+    \begin{lstlisting}[language=C]
+#include <stdio.h>
+#include <pthread.h>
+#include <unistd.h>
+
+int counter = 0;
+
+void *thread_func(void *arg) {
+    int id = *(int *)arg;
+    for (int i = 0; i < 3; i++) {
+        counter++;
+        printf("Thread %d: counter = %d\n", id, counter);
+        sleep(1);
+    }
+    pthread_exit(NULL);
+}
+
+int main() {
+    pthread_t t1, t2;
+    int id1 = 1, id2 = 2;
+    
+    pthread_create(&t1, NULL, thread_func, &id1);
+    pthread_create(&t2, NULL, thread_func, &id2);
+    
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+    
+    printf("Final counter = %d\n", counter);
+    return 0;
+}
+\end{lstlisting}
+\end{latin}
+
+\begin{parts}
+    \part
+    اگر خط
+    \lr{\texttt{pthread\_join(t1, NULL);}}
+    را حذف کنیم، چه اتفاقی می‌افتد؟
+
+    \part
+    تفاوت اصلی بین ایجاد یک نخ جدید با \texttt{pthread\_create} و ایجاد یک فرآیند جدید با \texttt{fork} چیست؟
+\end{parts}

@@ -1,0 +1,32 @@
+\question[30] با توجه به کد زیر،‌ ابتدا مشخص کنید که آیا میتوان در هریک از بخش‌های سوال و با استفاده از فراخوان سیستمی wait
+خروجی مد نظر را چاپ کرد و سپس جواب خود را توجیه کنید.
+
+\begin{latin}
+    \begin{lstlisting}[language=C]
+#include <unistd.h>
+#include <stdio.h>
+
+int main() {
+    pid_t p = fork();
+    if (p == 0) {
+        for(int i = 0; i < 100; i++) {
+            printf("C");
+            printf("D");
+        }
+    } else {
+        for(int i = 0; i < 100; i++) {
+            printf("A");
+            printf("B");
+        }
+    }
+    return 0;
+}
+\end{lstlisting}
+\end{latin}
+
+\begin{enumerate}
+    \item $C^* A^* B^* D$
+    \item $(CD)^*(AB)^*$
+    \item $A(CD)^*B$
+    \item $BCDA$
+\end{enumerate}

@@ -1,0 +1,248 @@
+\documentclass[12pt, answers]{exam}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{algpseudocodex}
+\usepackage{algorithm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{subfiles}
+\usepackage[most]{tcolorbox} 
+\usepackage{changepage} % for adjustwidth
+\usepackage{xepersian}
+
+\settextfont[
+    Path = ../fonts/,
+    Scale = 1.0,
+    BoldFont = *Bd,
+    ItalicFont = *It,
+    BoldItalicFont = *BdIt,
+    Extension = .ttf
+]{XB Yas}
+
+\renewenvironment{solution}{%
+  \par
+  \begin{tcolorbox}[
+    breakable,                
+    colback=white,
+    colframe=black,
+    arc=1pt,
+    boxrule=0.6pt,
+    left=4mm, right=4mm,
+    top=2mm, bottom=2mm,
+    before skip=10pt,
+    after skip=10pt,
+    segmentation style={solid, black}, 
+    before upper={\noindent\textbf{\color{blue}پاسخ:}\par\vspace{0.5em}}
+  ]
+ }
+{%
+  \end{tcolorbox}
+  \vspace{1em}
+}
+
+
+\algrenewcommand{\algorithmicrequire}{\textbf{Input:}}
+\algrenewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Wide solution environment (extends into the question label area)
+% Usage: replace \begin{solution} ... \end{solution} with \begin{widesolution} ... \end{widesolution}
+% Keeps the same optional title argument as exam's solution: \begin{widesolution}[عنوان]
+\newenvironment{widesolution}[1][]{%
+    \begin{solution}[#1]%
+    % Outdent left by the current list left margin so the solution spans full text width
+    \begin{adjustwidth}{\dimexpr-\leftmargin\relax}{0pt}%
+}{%
+    \end{adjustwidth}%
+    \end{solution}%
+}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\color{blue}پاسخ:}\par}
+\newcommand{\class}{اصول سیستم‌های عامل}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده ریاضی و آمار}
+\newcommand{\prof}{استاد: دکتر رفیعی}
+\newcommand{\group}{\textcolor{red}{نام دانشجو}}
+
+\begin{document}
+%%%%%%%%%%%%%% HDR START 
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+    \multicolumn{2}{c}{\textbf{به نام خدا}}                                            \\
+                    & \multirow{2}{*}{\includegraphics[scale=0.2]{../UILOGO.png}} \\
+    \textbf{\class} &                                                                  \\
+    \textbf{\term}  &                                                                  \\
+    \textbf{\prof}  &                                                                  \\
+    \textbf{\group} &                                                                  \\
+                    & \textbf{\college}
+    \\
+    % & \textbf{\todaydate} \\
+    % & \textbf{\deadline} \\ \\
+\end{tabular}\\
+\rule[1ex]{\textwidth}{.1pt}
+
+\begin{center}
+    \textbf{\lr{Problem Set 1}}
+\end{center}
+%%%%%%%%%%%%%% HDR END 
+
+
+\begin{questions}
+    \pointpoints{نمره}{نمره}
+
+    %%%%%%%%%%%%%% 1 START
+    \input{src/1_0.tex}
+    \begin{solution}
+        \begin{parts}
+            \part غلط. قالب داده و محل آن توسط فرآیندهای همکار کنترل می‌شود، نه سیستم عامل.
+            \part صحیح.
+            \part غلط. حتی در بافر نامحدود، اگر بافر خالی باشد (انتظار برای اضافه شدن عنصر جدید)، مصرف‌کننده ممکن است منتظر بماند.
+            \part غلط. در طرح نامتقارن، گیرنده نیازی به نام فرستنده ندارد؛ بلکه می‌تواند از هر شناسه‌ای (id) دریافت کند.
+            \part صحیح.
+            \part غلط. معمولاً از نخ‌ها استفاده می‌شود زیرا سربار کمتری دارند.
+            \part صحیح.
+            \part غلط. مدیریت آن‌ها بدون پشتیبانی سیستم‌عامل و در فضای کاربر انجام می‌شود.
+            \part غلط. چون تنها یک نخ کرنل وجود دارد، تنها یک نخ در یک زمان قابل اجراست و امکان اجرای موازی وجود ندارد.
+            \part غلط. این وظیفه به کامپایلرها و کتابخانه‌ها منتقل می‌شود.
+            \part غلط. اگر نخ کرنل بلاک شود، LWP و متعاقباً نخ کاربر متصل به آن نیز بلاک خواهند شد.
+        \end{parts}
+
+
+    \end{solution}
+    %%%%%%%%%%%%%% 1 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 2 START
+    \input{src/2_0.tex}
+
+    \begin{solution}
+\begin{parts}
+    
+    \part صف حلقوی \lr{(Circular Queue)}.
+    \part  آن‌ها باید توافق کنند که محدودیت سیستم عامل را که در حالت عادی مانع دسترسی یک فرآیند به فضای آدرس فرآیند دیگر می‌شود، حذف کنند.
+    \part{۱۴.} فرآیندها باید ضمانت کنند که به طور همزمان روی مکان یکسانی نمی‌نویسند.
+    \part{۱۵.} از طریق حافظه اشتراکی، گذرگاه سخت‌افزاری، یا شبکه.
+    \part{۱۶.} ۱. امکان ایجاد صندوق پستی جدید. ۲. امکان ارسال و دریافت پیام از طریق صندوق پستی. ۳. امکان حذف صندوق پستی.
+    \part{۱۷.} به این معنی است که اگر بخشی از برنامه بلاک شود، سایر بخش‌ها می‌توانند به اجرا ادامه دهند.
+    \part{۱۸.} ۱. شناسه نخ \lr{(Thread ID)}، ۲. شمارنده برنامه \lr{(Program Counter)}، ۳. مجموعه ثبات \lr{(Register Set)}، ۴. پشته \lr{(Stack)}.
+    \part{۱۹.} ۱. بخش کد، ۲. بخش داده، ۳. منابع سیستم‌عامل (مانند فایل‌های باز).
+    \part{۲۰.} ۱. پاسخگویی سریع، ۲. اشتراک‌گذاری منابع، ۳. صرفه اقتصادی، ۴. مقیاس‌پذیری.
+    \part{۲۱.} ۱. شناسایی وظایف، ۲. تعادل، ۳. جداسازی داده، ۴. وابستگی داده، ۵. تست و اشکال‌زدایی.
+    \part{۲۲.} زیرا بلاک شدن یک نخ در سطح کاربر باعث بلاک شدن کل فرآیند نمی‌شود و سایر نخ‌ها می‌توانند به کار خود ادامه دهند.
+    \part{۲۳.} ۱. سربار زمانی ایجاد نخ و حذف آن پس از اتمام کار. ۲. عدم وجود محدودیت برای تعداد نخ‌های فعال که می‌تواند باعث هدررفت منابع شود.
+    \part{۲۴.} داده‌های ایستا معمولاً بین همه نخ‌ها مشترک هستند، اما داده‌های TLS برای هر نخ یکتا و اختصاصی هستند.
+\end{parts}
+    \end{solution}
+    %%%%%%%%%%%%%% 2 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 3 START 
+    \input{src/3_0.tex}
+
+    \begin{solution}
+        \textbf{دلایل رخ‌دادن:}
+        \begin{itemize}
+            \item Mailbox ظرفیت محدود دارد و وقتی پر شود، تسک فرستنده بلوکه می‌شود و زمان پاسخ بالا می‌رود.
+            \item ارسال و دریافت پیام شامل کپی‌کردن داده و \lr{Context Switch} است که در بار سنگین باعث افزایش تأخیر می‌شود.
+            \item اگر Consumer اولویت پایین داشته باشد، خالی‌شدن Mailbox دیر انجام می‌شود و عملاً \lr{Priority Inversion} رخ می‌دهد.
+        \end{itemize}
+
+        \textbf{راه‌حل‌ها:}
+        \begin{itemize}
+            \item بالا بردن اولویت \lr{Consumer}.
+            \item ارسال اشاره‌گر به داده به‌جای کپی کامل پیام.
+            \item استفاده از حالت غیرمسدودکننده یا \lr{Timeout}.
+            \item افزایش ظرفیت Mailbox براساس نرخ واقعی تولید و مصرف.
+        \end{itemize}
+    \end{solution}
+    %%%%%%%%%%%%%% 3 END 
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 4 START
+    \input{src/4_0.tex}
+
+    \begin{solution}
+        \textbf{دلایل رخ‌دادن:}
+        \begin{itemize}
+            \item صف مشترک باعث \lr{Head-of-Line Blocking} می‌شود و کارهای سبک پشت کارهای سنگین گیر می‌کنند.
+            \item کارهای CPU-bound نخ‌ها را برای مدت زیاد اشغال می‌کنند و باعث اشباع Pool می‌شوند.
+            \item کارهای I/O-bound نخ را هنگام انتظار بلوکه می‌کنند و CPU گاهی بیکار می‌ماند.
+        \end{itemize}
+
+        \textbf{راه‌حل‌ها:}
+        \begin{itemize}
+            \item جداکردن صف‌ها و ساختن Thread Poolهای مجزا برای انواع کارها.
+            \item استفاده از \lr{Work-Stealing} برای کاهش انسداد صف.
+            \item استفاده از \lr{Priority Queue} برای اجرای سریع کارهای سبک و حساس.
+        \end{itemize}
+
+    \end{solution}
+    %%%%%%%%%%%%%% 4 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 5 START
+    \input{src/5_0.tex}
+
+    \begin{solution}
+
+    \end{solution}
+    %%%%%%%%%%%%%% 5 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%%% 6 START
+    \input{src/6_0.tex}
+
+    \begin{solution}
+
+    \end{solution}
+    %%%%%%%%%%%%%%% 6 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%%% 7 START
+    \input{src/7_0.tex}
+
+    \begin{solution}
+
+    \end{solution}
+    %%%%%%%%%%%%%%% 7 END
+
+
+\end{questions}
+\end{document}

@@ -1,0 +1,4 @@
+out/
+*.synctex.gz
+fonts/
+.DS_Store

@@ -1,0 +1,53 @@
+\question[20] 
+سه برنامه مستقل می‌خواهند با استفاده از مکانیزم ارسال پیام
+\lr{(Message Passing)}
+با یکدیگر ارتباط برقرار کنند:
+
+\begin{itemize}
+    \item \textbf{برنامه A:}
+          اعداد صحیح را از ورودی دریافت کرده و به صف پیام ارسال می‌کند.
+          با ورود عدد \texttt{0} برنامه متوقف می‌شود.
+
+    \item \textbf{برنامه B:}
+          فقط اعداد \textbf{زوج} را از صف دریافت کرده و مجموع آن‌ها را چاپ می‌کند.
+
+    \item \textbf{برنامه C:}
+          فقط اعداد \textbf{فرد} را از صف دریافت کرده و تعداد آن‌ها را چاپ می‌کند.
+\end{itemize}
+
+% کد ناقص برنامه A در زیر آمده است.
+توضیح دهید جه تغییراتی در برنامه A لازم است و برنامه‌های B و C چگونه باید پیام‌ها را دریافت کنند؟
+
+
+این کد را تکمیل کنید تا برنامه A به درستی کار کند.
+\begin{latin}
+    \begin{lstlisting}[language=C]
+// Program A - Sender
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/msg.h>
+
+struct Message {
+    long int msg_type;
+    int number;
+};
+
+int main() {
+    int msgid = msgget((key_t)5678, 0666 | IPC_CREAT);
+    struct Message msg;
+    int num;
+    
+    while (1) {
+        printf("Enter a number (0 to exit): ");
+        scanf("%d", &num);
+        if (num == 0) break;
+        
+        msg.number = num;
+        // ...
+        
+        msgsnd(msgid, &msg, sizeof(int), 0);
+    }
+    return 0;
+}
+\end{lstlisting}
+\end{latin}

@@ -1,0 +1,139 @@
+\documentclass[12pt, answers]{exam}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage{caption}
+\usepackage{algpseudocodex}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{subfiles}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{xepersian}
+\settextfont[Scale = 1.0 ,
+Path = ../fonts/ ,
+BoldFont = *Bd ,
+ItalicFont = *It ,
+BoldItalicFont = *BdIt ,
+Extension = .ttf
+]{XB Yas}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\pointpoints{نمره}{نمره}
+\renewcommand{\solutiontitle}{\noindent\textbf{پاسخ:}\par}
+\newcommand{\class}{اصول سیستم‌های عامل}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده ریاضی و آمار}
+\newcommand{\prof}{استاد: دکتر رفیعی}
+\newcommand{\group}{\textcolor{red}{نام دانشجو}}
+
+\begin{document}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+    \multicolumn{2}{c}{\textbf{به نام خدا}}                                            \\
+                    & \multirow{2}{*}{\includegraphics[scale=0.2]{../UILOGO.png}} \\
+    \textbf{\class} &                                                                  \\
+    \textbf{\term}  &                                                                  \\
+    \textbf{\prof}  &                                                                  \\
+    \textbf{\group} &                                                                  \\
+                    & \textbf{\college}                                                \\
+    % & \textbf{\todaydate} \\
+    % & \textbf{\deadline} \\ \\
+\end{tabular}\\
+\rule[1ex]{\textwidth}{.1pt}
+
+\begin{center}
+    \textbf{\lr{Problem Set 2}}
+\end{center}
+
+
+\begin{questions}
+
+    %% 1
+
+    \input{src/01.tex}
+    \begin{solution}
+        \textcolor{red}{پاسخ خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+
+    %% 2
+
+    \input{src/02.tex}
+    \begin{solution}
+        \textcolor{red}{پاسخ خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+
+  
+
+    %% 4
+
+    \input{src/04.tex}
+
+    \begin{solution}
+        \textcolor{red}{پاسخ خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+
+    %% 5
+
+    \input{src/05.tex}
+
+    \begin{solution}
+        \textcolor{red}{پاسخ خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+
+    %% 6
+
+    \input{src/06.tex}
+
+    \begin{solution}
+        \textcolor{red}{پاسخ خود را اینجا بنویسید.}
+    \end{solution}
+\end{questions}
+\end{document}

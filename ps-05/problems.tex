@@ -1,0 +1,237 @@
+\documentclass[12pt, answers]{exam}
+\usepackage{tikz}
+% \usepackage{amsmath}
+\usepackage{amsfonts}
+% \usepackage{amssymb}
+\usepackage{graphicx}
+% \usepackage{tabularray}
+% \usepackage{multirow}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+% \tcbuselibrary{listings} 
+% \usepackage{xepersian}
+% \usepackage{spverbatim}
+\usepackage{hyperref}
+\usepackage[a4paper, total={6in, 9.5in}]{geometry}
+\usepackage{caption}
+\usepackage{algpseudocodex}
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{tabularray}
+\usepackage{xepersian}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{subfiles}
+\usepackage{xcolor}
+\usepackage{mathtools}
+\usepackage{multirow}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{spverbatim}
+\settextfont[Path = ../fonts/ ,Scale = 1.0 ,
+BoldFont = *Bd ,
+ItalicFont = *It ,
+BoldItalicFont = *BdIt ,
+Extension = .ttf
+]{XB Yas}
+
+% Colors for listings (used in \lstdefinestyle{mystyle})
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+\newtcblisting{codebox}[1]{
+    enhanced,
+    listing only,
+    listing options={
+        language=C,
+        basicstyle=\ttfamily\small\latin,
+        keywordstyle=\color{blue}\bfseries,
+        commentstyle=\color{green!50!black},
+        breaklines=true,
+        numbers=left,
+        numberstyle=\tiny\color{gray},
+        tabsize=2
+    },
+    colback=white!95!gray,
+    colframe=black!70,
+    boxrule=0.5mm,
+    arc=2mm,
+    attach boxed title to bottom center={yshift=3mm}, 
+    boxed title style={
+        colback=black!10,
+        colframe=black!70,
+        boxrule=0.5mm,
+        arc=1mm
+    },
+    title={\textbf{#1}},
+    coltitle=black
+}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{پاسخ:}\par}
+\newcommand{\class}{اصول سیستم‌های عامل}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده ریاضی و آمار}
+\newcommand{\prof}{استاد: دکتر رفیعی}
+\newcommand{\group}{\textcolor{red}{نام دانشجو - شماره دانشجویی}}
+
+
+\begin{document}
+\pointpoints{نمره}{نمره}
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+    \multicolumn{2}{c}{\textbf{به نام خدا}}                                            \\
+                    & \multirow{2}{*}{\includegraphics[scale=0.2]{../UILOGO.png}} \\
+    \textbf{\class} &                                                                  \\
+    \textbf{\term}  &                                                                  \\
+    \textbf{\prof}  &                                                                  \\
+    \textbf{\group} &                                                                  \\
+                    & \textbf{\college}                                                \\
+    % & \textbf{\todaydate} \\
+    % & \textbf{\deadline} \\ \\
+\end{tabular}\\
+\rule[1ex]{\textwidth}{.1pt}
+
+\begin{center}
+    \textbf{تمرین سری پنجم}
+\end{center}
+
+
+\begin{questions}
+
+    \question به سوالات زیر پاسخ دهید.
+
+    \begin{parts}
+
+        \part تفاوت اصلی فرآیندهای مستقل (Independent) و همکار (Cooperating) چیست؟
+        \part سه چالش اصلی در ارتباط فرآیندهای همکار را نام ببرید.
+        \part شرط انحصار متقابل \lr{(Mutual Exclusion)} در دسترسی به بافر مشترک به چه معناست؟
+        \part بخش باقی‌مانده \lr{(Remainder Section)} در ساختار حل مسئله ناحیه بحرانی شامل چه کدهایی است؟
+        \part چگونه اجرای هم‌روند دستورات ساده‌ای مانند \texttt{count++} و \texttt{count--} در سطح زبان ماشین می‌تواند منجر به ناهماهنگی داده‌ها شود؟
+
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part سه نیازمندی اساسی برای یک راه حل معتبر در مسئله ناحیه بحرانی را نام ببرید.
+        \part چرا در تلاش اول دکر (Decker)، ویژگی «پیشرفت» نقض می‌شود؟
+        \part مشکل اصلی تلاش دوم دکر که منجر به نقض انحصار متقابل می‌شود چیست؟
+        \part تفاوت مفهومی بن‌بست (Deadlock) و قفل زنده (Livelock) در چیست؟
+        \part رابطه منطقی بین پدیده گرسنگی (Starvation)، بن‌بست (Deadlock) و ویژگی انتظار محدود را تحلیل کنید.
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    \begin{parts}
+        \part مشکل اصلی «تلاش چهارم الگوریتم دکر» چیست و در تلاش پنجم چگونه برطرف شده است؟
+        \part در الگوریتم پترسون (برای دو فرآیند)، متغیرهای flag و turn چه نقش متفاوتی ایفا می‌کنند؟
+        \part چرا روش سخت‌افزاری «از کار انداختن وقفه» \lr{(Disable Interrupts)} برای سیستم‌های چندپردازنده‌ای مناسب نیست؟
+        \part دستورالعمل TSL \lr{(Test and Set Lock)} چگونه کار می‌کند و کدام یک از سه شرط اصلی مسئله ناحیه بحرانی را ارضا نمی‌کند؟
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question با مقایسه الگوریتم پترسون (راهکار نرم‌افزاری) و دستورالعمل TSL (راهکار سخت‌افزاری)، هر دو از مکانیسم «انتظار مشغول» \lr{(Busy Waiting)} استفاده می‌کنند. با این حال، چرا گفته می‌شود الگوریتم پترسون شرط «انتظار محدود» را برآورده می‌کند، اما TSL ممکن است باعث گرسنگی (Starvation) شود؟ (تحلیل کنید چه مکانیزمی در پترسون وجود دارد که در TSL غایب است).
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    قفل‌های \lr{mutex} که بر پایه «انتظار مشغول» (\lr{busy-waiting}) هستند و
+    با نام \lr{spin-lock} شناخته می‌شوند،
+    در چه شرایطی نسبت به قفل‌های مبتنی بر «مسدود کردن» (\lr{blocking}) ترجیح داده می‌شوند؟
+    \\
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \question فرض کنید در کد زیر
+    \lr{p1} و \lr{p2}
+    همروند باشند و سمافورهای x و y دو سمافور دودویی و هر دو مقدار اولیه یک را داشته باشند. همچنین
+    فرض کنید دستور print در یک چرخه دستورالعمل اجرا شود.
+
+    \begin{latin}
+        \begin{center}
+            \begin{lstlisting}[basicstyle=\ttfamily\small]
+p2:                         p1:
+----                        ----
+wait(y)                     wait(x)
+while true do               while true do
+print "B"                   print "A"
+signal(y)                   signal(x)
+----                        ----
+            \end{lstlisting}
+        \end{center}
+    \end{latin}
+
+    آیا هر تلفیقی از A ها و B ها ممکن است در خروجی ظاهر شوند؟ توضیح دهید.
+    \\
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+    \pagebreak
+    \question
+    ساختار monitor چه مشکلاتی را حل می‌کند که قفل‌های mutex و monitor با آنها دسته پنجه نرم می‌کنند؟
+    این کار را به چه شکلی انجام می‌دهد؟
+    \\
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+    \pagebreak
+
+    \question
+    \begin{parts}
+        \part نحوه همگام‌سازی در مسئله تولیدکننده-مصرف‌کننده را با استفاده از مانیتور شرح دهید.
+        \part یک نمونه مانیتور برای حل مسئله «غذا خوردن فیلسوف‌ها» بنویسید که از بن‌بست جلوگیری کند.
+    \end{parts}
+
+    \begin{solution}
+        \textcolor{red}{جواب خود را اینجا بنویسید.}
+    \end{solution}
+
+
+\end{questions}
+\end{document}

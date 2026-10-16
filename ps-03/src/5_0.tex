@@ -1,0 +1,46 @@
+
+\question[10]  دو برنامه همکار میخواهند پیامی را با استفاده از روش اشتراک حافظه بین یکدیگر انتقال دهند.
+مشکلات این دو برنامه را یافته و برای هریک راه‌حلی ارائه دهید.
+
+\begin{latin}
+    \begin{lstlisting}[language=C]
+// Progam 1
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/shm.h>
+#include <string.h>
+
+int main()
+{
+    int shmid;
+    void *shared_memory;
+    char buffer[1024];
+    shmid = shmget((key_t)2345, 512, 0666);
+    shared_memory = shmat(shmid, NULL, 0);
+    printf("Enter some data to write to shared memory\n");
+    read(0, buffer, 1024);
+    strcpy(shared_memory, buffer);
+    shmdt(shared_memory);
+    return 0;
+}       
+\end{lstlisting}
+\end{latin}
+\begin{latin}
+    \begin{lstlisting}[language=C]
+// Progam 2
+#include <stdio.h>
+#include <sys/shm.h>
+#include <string.h>
+
+int main()
+{
+    int shmid;
+    void *shared_memory;
+    shmid = shmget((key_t)1234, 512, 0666);
+    shared_memory = shmat(shmid, NULL, 0);
+    printf("Data read from shared memory: %s\n", shared_memory);
+    shmdt(shared_memory);
+    return 0;
+}    
+\end{lstlisting}
+\end{latin}

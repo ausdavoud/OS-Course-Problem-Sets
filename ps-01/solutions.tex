@@ -1,0 +1,214 @@
+\documentclass[12pt, answers]{exam}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{subfiles}
+\usepackage[most]{tcolorbox} 
+\usepackage{changepage} % for adjustwidth
+\usepackage{xepersian}
+
+\settextfont[
+    Path = ../fonts/,
+    Scale = 1.0,
+    BoldFont = *Bd,
+    ItalicFont = *It,
+    BoldItalicFont = *BdIt,
+    Extension = .ttf
+]{XB Yas}
+
+\renewenvironment{solution}{%
+  \par
+  \begin{tcolorbox}[
+    breakable,                
+    colback=white,
+    colframe=black,
+    arc=1pt,
+    boxrule=0.6pt,
+    left=4mm, right=4mm,
+    top=2mm, bottom=2mm,
+    before skip=10pt,
+    after skip=10pt,
+    segmentation style={solid, black}, 
+    before upper={\noindent\textbf{\color{blue}پاسخ:}\par\vspace{0.5em}}
+  ]
+ }
+{%
+  \end{tcolorbox}
+  \vspace{1em}
+}
+
+% Wide solution environment (extends into the question label area)
+% Usage: replace \begin{solution} ... \end{solution} with \begin{widesolution} ... \end{widesolution}
+% Keeps the same optional title argument as exam's solution: \begin{widesolution}[عنوان]
+\newenvironment{widesolution}[1][]{%
+    \begin{solution}[#1]%
+    % Outdent left by the current list left margin so the solution spans full text width
+    \begin{adjustwidth}{\dimexpr-\leftmargin\relax}{0pt}%
+}{%
+    \end{adjustwidth}%
+    \end{solution}%
+}
+
+\renewcommand{\solutiontitle}{\noindent\textbf{\color{blue}پاسخ:}\par}
+\newcommand{\class}{اصول سیستم‌های عامل}
+\newcommand{\term}{نیم‌سال اول ۰۴-۰۵}
+\newcommand{\college}{دانشکده ریاضی و آمار}
+\newcommand{\prof}{استاد: دکتر رفیعی}
+\newcommand{\group}{نام دانشجو}
+
+\begin{document}
+%%%%%%%%%%%%%% HDR START 
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{صفحه \thepage\ از \numpages}{}{\class}
+\runningheadrule
+\begin{tabular}{p{.7\textwidth} l}
+    \multicolumn{2}{c}{\textbf{به نام خدا}}                                            \\
+                    & \multirow{2}{*}{\includegraphics[scale=0.2]{../UILOGO.png}} \\
+    \textbf{\class} &                                                                  \\
+    \textbf{\term}  &                                                                  \\
+    \textbf{\prof}  &                                                                  \\
+    \textbf{\group} &                                                                  \\
+                    & \textbf{\college}
+    \\
+    % & \textbf{\todaydate} \\
+    % & \textbf{\deadline} \\ \\
+\end{tabular}\\
+\rule[1ex]{\textwidth}{.1pt}
+
+\begin{center}
+    \textbf{\lr{Problem Set 1}}
+\end{center}
+%%%%%%%%%%%%%% HDR END 
+
+
+\begin{questions}
+    \pointpoints{نمره}{نمره}
+
+    %%%%%%%%%%%%%% 1 START 
+    \input{src/1_0.tex}
+
+    \begin{solution}
+        \begin{parts}
+            \part    سیستم‌های چندپردازنده‌ای یک کامپیوتر با چند پردازنده هستند که حافظه و منابعش را به‌صورت مشترک استفاده می‌کنند و ارتباط بین پردازنده‌ها از طریق حافظه یا باس سیستم است. این سیستم‌ها مقیاس‌پذیری محدودی دارند و خرابی یک پردازنده می‌تواند کل سیستم را تحت تأثیر قرار دهد.
+            در مقابل، سیستم‌های خوشه‌ای از چند کامپیوتر مستقل تشکیل شده‌اند که از طریق شبکه به هم متصل‌اند و هر گره حافظه و منابع خودش را دارد. این سیستم‌ها مقیاس‌پذیرتر و مقاوم‌تر در برابر خطا هستند، زیرا اگر یک گره خراب شود، بقیه گره‌ها می‌توانند سرویس را ادامه دهند.
+            برای ارائه سرویس با دسترس‌پذیری بالا، دو ماشین در یک خوشه باید سلامت یکدیگر را پایش کنند، مکانیزم failover داشته باشند تا در صورت خرابی یکی، دیگری سرویس را ادامه دهد، داده‌ها را همگام نگه دارند و ارتباط مطمئن بین گره‌ها برقرار باشد. همچنین باید از تجهیزات و شبکه افزونه استفاده شود و سرویس نرم‌افزاری قابلیت خوشه‌بندی و failover را داشته باشد.
+
+            \part وقفه‌ها (Interrupts) سیگنال‌هایی هستند که به پردازنده می‌گویند اجرای کار جاری را متوقف کرده و یک رویداد فوری را پردازش کند. این کار باعث می‌شود سیستم بتواند به سرعت به دستگاه‌ها یا خطاهای سخت‌افزاری پاسخ دهد و CPU هم بیهوده منتظر نماند.
+            تله‌ها (Traps) تفاوت مهمی با وقفه دارند؛ تله‌ها همزمان با اجرای یک دستورالعمل رخ می‌دهند و معمولاً به دلیل یک خطا یا درخواست برنامه برای استفاده از خدمات سیستم عامل ایجاد می‌شوند.
+            بله، برنامه‌های کاربر می‌توانند عمداً تله ایجاد کنند تا با سیستم عامل تعامل کنند، مثلاً برای خواندن یا نوشتن فایل یا ایجاد فرایند جدید.
+
+            \part NUMA مخفف
+            \lr{Non-Uniform Memory Access}
+            است.
+            در این معماری هر پردازنده به یک بخش محلی از حافظه نزدیک‌تر است و دسترسی به آن سریع‌تر انجام می‌شود. اما اگر پردازنده بخواهد به حافظه‌ی بخش دیگری (
+            \lr{Remote Memory}
+            ) دسترسی پیدا کند، زمان بیشتری لازم است. به همین دلیل زمان دسترسی حافظه برای همه پردازنده‌ها یکسان نیست.
+
+            \part چندبرنامگی زمانی از چندوظیفگی کارآمدتر است که هدف اصلی بیشینه‌سازی توان (throughput) پردازنده باشد و نیاز به پاسخ‌گویی تعاملی کاربران وجود نداشته باشد. دلیلش این است که چندوظیفگی برای ایجاد تعامل، از سوئیچ‌های زمانیِ مکرر استفاده می‌کند که هر سوئیچ
+            (\lr{context-switch})
+            هزینهٔ
+            و سربار دارد؛ در حالی که در حالت چندبرنامگی سوئیچ‌ها عموماً زمان‌مند نیستند (ایجاد می‌شوند وقتی یک فرایند مسدود شود) و در نتیجه سربار کمتری برای پردازنده ایجاد می‌شود.
+
+            چنین سیستمی برای کارهای زیر مناسب است:
+            \begin{itemize}
+                \item پردازش دسته‌ای \lr{(batch processing)} داده‌های حجیم
+                \item محاسبات عددی/شبیه‌سازی‌های علمی که هدفشان کارکرد طولانی و بدون دخالت کاربر است.
+                \item رندرینگ و تبدیل رسانه \lr{(render, encode)} که باید بیشترین استفادهٔ CPU را داشته باشند.
+                \item صف‌های کاری \lr{(job queues)} و سرویس‌های پردازش حجم بالا که اولویت روی throughput است.
+            \end{itemize}
+        \end{parts}
+    \end{solution}
+    %%%%%%%%%%%%%% 1 END 
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 2 START
+    \input{src/2_0.tex}
+
+    \begin{solution}
+        \begin{parts}
+            \part حذف اجرای دو حالته باعث ایجاد مشکلات جدی امنیتی و پایداری می‌شود. برنامه‌های مخرب می‌توانند به حافظه سایر برنامه‌ها دسترسی پیدا کنند، داده‌ها را تغییر دهند یا سیستم فایل را خراب کنند. مدیریت همزمانی و اشتراک منابع سخت‌تر شده و احتمال کرش سیستم افزایش می‌یابد.
+            \part برنامه مخرب می‌تواند مستقیماً به آدرس‌های حافظه سایر برنامه‌ها دسترسی پیدا کند، داده‌ها یا کد آن‌ها را تغییر دهد، فایل‌ها را پاک یا خراب کند و عملکرد سیستم را مختل کند.
+            \part می‌توان از Virtualization، Sandbox، حفاظت حافظه
+            \lr{(Memory Protection)}
+            یا کنترل سخت‌افزاری دسترسی به منابع استفاده کرد تا برنامه‌ها از هم ایزوله شده و سطح کنترل حفظ شود.
+            \part اجرای دو حالته باعث می‌شود برنامه‌های کاربر در حالت محدود اجرا شوند و سیستم‌عامل کنترل کامل روی دسترسی به منابع و حافظه داشته باشد. این روش امنیت و پایداری را تضمین کرده و مدیریت همزمانی و اشتراک منابع را ساده‌تر می‌کند.
+        \end{parts}
+
+    \end{solution}
+    %%%%%%%%%%%%%% 2 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%% 3 START
+    \input{src/3_0.tex}
+
+    \begin{solution}
+        \begin{parts}
+            \part دیاگرام کامل شده:
+            \begin{center}
+                \scalebox{0.8}{\input{figures/figure_02.tex}}
+            \end{center}       \part اگه از DMA
+            استفاده نکنیم، دیاگرامی که توی صورت سوال
+            هست برای هر chunk
+            از دیتا تکرار میشه. یعنی مثلا به ازای هر
+            8 بیت، CPU مجبور میشه تا
+            به پردازش وقفه بپردازه.
+            ولی وقتی از
+            DMA
+            استفاده می‌کنیم، CPU
+            فقط یک بار رجیسترهای DMA رو مقداردهی می‌کنه و دیگه هر میزان دیتایی که لازم باشه
+            transfer
+            میشه و
+            \textbf{در نهایت}
+            بعد از انتقال همه داده‌ها، CPU
+            توسط یک وقفه مطلع میشه.
+        \end{parts}
+    \end{solution}
+    %%%%%%%%%%%%%% 3 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%%% 4 START
+    \input{src/4_0.tex}
+
+    \begin{solution}
+
+        \begin{parts}
+            \part میتونه از
+            RAM
+            استفاده کنه.
+
+            \part نه نمیتونه.
+            دو تا از سه مورد زیر رو اگر نوشته باشن قبوله:
+            \begin{itemize}
+                \item اولا RAM یک حافظه فرار (volatile) هست و با قطع برق اطلاعاتش از بین میره.
+                      در نتیجه برنامه بوت‌استرپ که باید همیشه در دسترس باشه نمیتونه روی RAM
+                      قرار بگیره.
+                \item دوما RAM قیمت بالاتری نسبت به حافظه فقط‌خواندنی (ROM) داره و این موضوع میتونه هزینه کلی سیستم رو افزایش بده.
+                \item سوما RAM قابل نوشتن هم هست و این موضوع میتونه امنیت سیستم رو به خطر بندازه و به بدافزارها
+                      اجازه بده که برنامه بوت‌استرپ رو تغییر بدن.
+                \item هر دلیل قانع‌کننده دیگر به صلاح‌دید مصحح
+            \end{itemize}
+        \end{parts}
+    \end{solution}
+    %%%%%%%%%%%%%%% 4 END
+
+    \pagebreak
+
+    %%%%%%%%%%%%%%% 5 START
+    \input{src/5_0.tex}
+
+    \begin{solution}
+        جواب‌ها می‌توانند متفاوت باشند و به صلاح‌دید 
+        TA
+        تصحیح خواهند شد.
+    \end{solution}
+    %%%%%%%%%%%%%%% 5 END
+\end{questions}
+\end{document}
