@@ -12,7 +12,7 @@
 
 <br>
 
-Five problem sets from Dr. Rafiee's operating systems course, where I was a teaching assistant, with their solutions. They follow the course from what an operating system is, through processes, threads and scheduling, to synchronization. Everything is in Persian and typeset with XeLaTeX.
+Five problem sets from Dr. Mojtaba Rafiee's operating systems course, where I was a teaching assistant, with their solutions. They follow the course from what an operating system is, through processes, threads and scheduling, to synchronization. Everything is in Persian and typeset with XeLaTeX.
 
 | Set | Topic | Problems | Solutions |
 | :-- | :-- | :-- | :-- |
@@ -51,4 +51,9 @@ The included `.latexmkrc` selects XeLaTeX, keeps auxiliary files in `out/`, and 
 
 ## Credits
 
-Written by the course's teaching assistants, among them Davoud Nosrati Amirabadi ([@ausdavoud](https://github.com/ausdavoud)), for Dr. Rafiee's course at the Faculty of Mathematics and Statistics, University of Isfahan.
+Written by the course's teaching assistants, among them:
+
+- Davoud Nosrati Amirabadi &nbsp;[@ausdavoud](https://github.com/ausdavoud)
+- Mohammad Mallaee &nbsp;[@mohammad-mallaee](https://github.com/mohammad-mallaee)
+
+For Dr. Mojtaba Rafiee's course at the Faculty of Mathematics and Statistics, University of Isfahan.
